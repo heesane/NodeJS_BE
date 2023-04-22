@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>동물소리 API</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #input-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    input {
+      height: 40px;
+      padding: 5px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      height: 40px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0 10px;
+      border-radius: 5px;
+    }
+
+    #image-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <h1>동물소리 API</h1>
+    <div id="input-container">
+      <input id="name" type="text" placeholder="동물 이름을 입력하세요">
+      <button onclick="getname()">API 요청</button>
+    </div>
+    <div id="image-container">
+      <img id="animal-image" src="">
+    </div>
+  </div>
+
+  <script>
+    function getname() {
+      const name = document.getElementById('name').value;
+      fetch(`http://localhost:3000/sound/${name}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          document.getElementById('animal-image').src = data.image;
+        })
+    }
+  </script>
+</body>
+
+</html>
