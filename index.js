@@ -6,6 +6,10 @@ const app = express();
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.get('/',(req,res)=>{
+  res.send("Hello");
+});
+
 // API 엔드포인트 등록
 app.get('/api/users', (req, res) => {
   // 사용자 목록 반환
